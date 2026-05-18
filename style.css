@@ -1,0 +1,279 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap');
+
+/* ── المتغيرات ── */
+:root {
+    --bg:       #f5f2ed;
+    --surface:  #ffffff;
+    --text:     #1d1c16;
+    --muted:    #6b6a65;
+    --accent:   #d97757;
+    --border:   #e6e1d6;
+    --green:    #2e7d32;
+    --green-bg: rgba(46, 125, 50, 0.1);
+    --orange:   #c06000;
+    --orange-bg:rgba(237, 108, 2, 0.1);
+    --blue:     #5c6ac4;
+    --blue-bg:  rgba(92, 106, 196, 0.1);
+}
+
+[data-theme="dark"] {
+    --bg:      #1a1917;
+    --surface: #242320;
+    --text:    #f0ede8;
+    --muted:   #9a9891;
+    --border:  #333230;
+    --accent:  #e59073;
+}
+
+/* ── إعادة الضبط ── */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Cairo', sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* ── الترويسة ── */
+.header {
+    background-color: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header h1 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.header h1 span { color: var(--accent); }
+
+.header input {
+    flex: 1;
+    max-width: 300px;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.header input:focus { border-color: var(--accent); }
+
+.header button {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+/* ── المحتوى الرئيسي ── */
+main {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+
+/* ── عداد النماذج ── */
+#modelCount {
+    display: inline-block;
+    font-size: 0.8rem;
+    color: var(--muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+/* ── فلتر الشركة ── */
+#familyNav {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+}
+
+.family-btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--muted);
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.family-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+.family-btn.active {
+    background: var(--text);
+    color: var(--surface);
+    border-color: var(--text);
+}
+
+/* ── فلتر التسعير ── */
+.status-filter {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border);
+}
+
+.status-filter span {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-weight: 600;
+}
+
+.filter-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    padding: 0.3rem 0.9rem;
+    border-radius: 20px;
+    cursor: pointer;
+    color: var(--muted);
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.filter-btn:hover { border-color: var(--muted); }
+
+.filter-btn.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+}
+
+/* ── شبكة البطاقات ── */
+#modelGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.25rem;
+}
+
+/* ── البطاقة ── */
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.card:hover { border-color: var(--accent); }
+
+/* صف العلوي: الحالة + الشركة */
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* شارة الحالة */
+.badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.badge-free  { background: var(--green-bg);  color: var(--green); }
+.badge-semi  { background: var(--orange-bg); color: var(--orange); }
+.badge-paid  { background: var(--blue-bg);   color: var(--blue); }
+
+/* شارة الشركة */
+.family-badge {
+    font-size: 0.75rem;
+    color: var(--muted);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+/* التخصص */
+.specialty {
+    background: rgba(217, 119, 87, 0.1);
+    border-radius: 6px;
+    padding: 0.4rem 0.7rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+/* اسم النموذج */
+.card h3 { font-size: 1.1rem; font-weight: 800; }
+
+/* المزود */
+.provider { font-size: 0.8rem; color: var(--muted); }
+
+/* الوصف */
+.card p { font-size: 0.875rem; color: var(--muted); flex-grow: 1; }
+
+/* التاقات */
+.tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+
+.tag {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--muted);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+/* الرابط */
+.card a {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+    padding: 0.5rem 1rem;
+    border: 1.5px solid var(--accent);
+    border-radius: 6px;
+    align-self: flex-start;
+}
+
+.card a:hover { background: var(--accent); color: #fff; }
+
+/* ── حالة لا توجد نتائج ── */
+.empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem;
+    color: var(--muted);
+    font-size: 1rem;
+}
+
+/* ── الاستجابة للشاشات الصغيرة ── */
+@media (max-width: 768px) {
+    .header { flex-direction: column; align-items: stretch; }
+    .header input { max-width: 100%; }
+    #modelGrid { grid-template-columns: 1fr; }
+}
